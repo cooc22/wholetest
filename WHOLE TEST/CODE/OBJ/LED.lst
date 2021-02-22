@@ -1,0 +1,200 @@
+C51 COMPILER V9.54   LED                                                                   12/26/2020 16:32:02 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE LED
+OBJECT MODULE PLACED IN ..\OBJ\LED.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\HARDWARE\BSP- LED\LED.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\HARDWARE\B
+                    -SP- LED;..\SYSTEM\delay;..\HARDWARE\BSP-SMG;..\HARDWARE\BSP- KEY;..\HARDWARE\BSP-LCD) DEBUG OBJECTEXTEND PRINT(..\OBJ\LE
+                    -D.lst) OBJECT(..\OBJ\LED.obj)
+
+line level    source
+
+   1          #include "led.h"
+   2          
+   3          
+   4          void LED_Init()
+   5          {
+   6   1              delay_ms(100);
+   7   1          LED=0xff;
+   8   1          delay_ms(100);
+   9   1              LED=0x00;
+  10   1      }
+  11          
+  12          
+  13          /***********************************
+  14          
+  15          LED功能函數:1.全亮全灭2.顺序亮顺序灭3.倒序亮倒序灭4.一个一个亮灭(流水灯)5.单独一个亮灭(跑马灯)
+  16          
+  17          void  LED_All_ON();
+  18          void  LED_All_OFF();
+  19          void  LED_Left_One();
+  20          void  LED_Right_One();
+  21          void  LED_Left_Continue();
+  22          void  LED_Right_Continue();
+  23          
+  24          ***********************************/
+  25          
+  26          void oneled(uchar i)
+  27           {
+  28   1                    uchar j;
+  29   1               for(j=0;j<i;j++)
+  30   1               {
+  31   2                LED=0xfe;          //第一个灯亮 1111.1110
+  32   2                delay_ms(100);
+  33   2                LED=0xfd;          //第二个灯亮
+  34   2                delay_ms(100);
+  35   2                LED=0xfb;          //第三个灯亮
+  36   2                delay_ms(100);
+  37   2                LED=0xf7;          //第四个灯亮
+  38   2                delay_ms(100);
+  39   2                LED=0xef;          //第五个灯亮
+  40   2                delay_ms(100);
+  41   2                LED=0xdf;          //第六个灯亮
+  42   2                delay_ms(100);
+  43   2                LED=0xbf;          //第七个灯亮
+  44   2                delay_ms(100);
+  45   2                LED=0x7f;          //第八个灯亮
+  46   2                delay_ms(100);
+  47   2                LED=0xff;
+  48   2                LED=0xfe;          //第一个灯亮
+  49   2                delay_ms(100);
+  50   2               }
+  51   1      }
+  52           
+  53          
+C51 COMPILER V9.54   LED                                                                   12/26/2020 16:32:02 PAGE 2   
+
+  54          void back_oneled(uchar i)
+  55            {
+  56   1                     uchar j;
+  57   1               for(j=0;j<i;j++)
+  58   1               {
+  59   2                 LED=0x7f;          //第八个灯亮 0111.1111
+  60   2                 delay_ms(100);
+  61   2                 LED=0xbf;          //第七个灯亮
+  62   2                 delay_ms(100);
+  63   2                 LED=0xdf;          //第六个灯亮
+  64   2                 delay_ms(100);
+  65   2                 LED=0xef;          //第五个灯亮
+  66   2                 delay_ms(100);
+  67   2                 LED=0xf7;          //第四个灯亮
+  68   2                 delay_ms(100);
+  69   2                 LED=0xfb;          //第三个灯亮
+  70   2                 delay_ms(100);
+  71   2                 LED=0xfd;         //第二个灯亮
+  72   2                 delay_ms(100);
+  73   2                 LED=0xfe;         //第一个灯亮
+  74   2                 delay_ms(100);
+  75   2           }
+  76   1        }
+  77            
+  78            
+  79            void stopled(void)
+  80          {
+  81   1             LED=0xff;    //关闭8个LED
+  82   1                 delay_ms(100);
+  83   1      }
+  84          
+  85          
+  86          
+  87          void runninghorse(void)
+  88          { 
+  89   1        uint i;
+  90   1        uchar temp; 
+  91   1        {
+  92   2          temp=0x01;
+  93   2          for(i=0;i<8;i++)  //8个流水灯逐个闪动
+  94   2          {
+  95   3          LED=~temp;          //0xfe
+  96   3          delay_ms(100);   //调用延时函数
+  97   3          temp<<=1;
+  98   3          }
+  99   2              if(LED == 0x00 )        
+ 100   2          { 
+ 101   3              LED = 0xfe; 
+ 102   3                } // 0xfe = 1111 1110 
+ 103   2         }
+ 104   1       }
+ 105          
+ 106          
+ 107          void back_runninghorse()
+ 108          {
+ 109   1        uint i;
+ 110   1        uchar temp; 
+ 111   1         
+ 112   1         {
+ 113   2          temp=0x80;
+ 114   2          for(i=0;i<8;i++)  //8个流水灯反向逐个闪动
+ 115   2         {
+C51 COMPILER V9.54   LED                                                                   12/26/2020 16:32:02 PAGE 3   
+
+ 116   3          LED=~temp;            //0x7f
+ 117   3          delay_ms(100);   //调用延时函数
+ 118   3          temp>>=1;
+ 119   3         }
+ 120   2        if(LED == 0x00 )      
+ 121   2        { 
+ 122   3        LED = 0x7f; 
+ 123   3        } // 0xfe = 1111 1110 
+ 124   2        }
+ 125   1      }
+ 126          
+ 127          void flowingwater(void)
+ 128          {
+ 129   1              uint i;
+ 130   1          uchar temp; 
+ 131   1      
+ 132   1        
+ 133   1        {
+ 134   2        temp=0xfe;
+ 135   2         for(i=0;i<8;i++)  //8个流水灯依次全部点亮
+ 136   2        {
+ 137   3         LED=temp;
+ 138   3         delay_ms(100);   //调用延时函数
+ 139   3         temp=(temp|0x01)<<1;
+ 140   3        }
+ 141   2        if(LED == 0x00 )      
+ 142   2        { 
+ 143   3        LED = 0xfe; 
+ 144   3        } // 0xfe = 1111 1110 
+ 145   2        }
+ 146   1      }
+ 147          
+ 148          void back_flowingwater(void)
+ 149          {
+ 150   1        uint i;
+ 151   1        uchar temp; 
+ 152   1        
+ 153   1        {
+ 154   2         temp=0x7f;
+ 155   2         for(i=0;i<8;i++)  //8个流水灯依次反向全部点亮
+ 156   2         {
+ 157   3          LED=temp;
+ 158   3          delay_ms(100);   //调用延时函数
+ 159   3          temp=(temp|0x01)>>1;
+ 160   3         }
+ 161   2        }
+ 162   1        if(LED == 0x00 )      
+ 163   1        { 
+ 164   2        LED = 0x7f; 
+ 165   2        } // 0xfe = 1111 1110 
+ 166   1      }
+ 167          
+ 168          
+ 169          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    394    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      16
+C51 COMPILER V9.54   LED                                                                   12/26/2020 16:32:02 PAGE 4   
+
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

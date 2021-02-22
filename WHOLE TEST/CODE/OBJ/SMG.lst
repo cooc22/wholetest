@@ -1,0 +1,78 @@
+C51 COMPILER V9.54   SMG                                                                   12/26/2020 16:01:40 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE SMG
+OBJECT MODULE PLACED IN ..\OBJ\SMG.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\HARDWARE\BSP-SMG\SMG.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\HARDWARE\BS
+                    -P- LED;..\SYSTEM\delay;..\HARDWARE\BSP-SMG;..\HARDWARE\BSP- KEY;..\HARDWARE\BSP-LCD) DEBUG OBJECTEXTEND PRINT(..\OBJ\SMG
+                    -.lst) OBJECT(..\OBJ\SMG.obj)
+
+line level    source
+
+   1          #include "smg.h"
+   2          
+   3          uint t0;
+   4          uchar sec,min,hour;
+   5          
+   6          void SMG_Init()
+   7          {
+   8   1        uchar i;
+   9   1        for(i=0;i<8;i++)
+  10   1         {
+  11   2          DUAN=LED7Code_CA[i];
+  12   2          WEI=Wei_CA[i];
+  13   2          delay_ms(50);
+  14   2          DUAN=0xff;
+  15   2          }
+  16   1         
+  17   1        for(i=0;i<8;i++)
+  18   1         {
+  19   2          DUAN=LED7Code_CC[i];
+  20   2          WEI=Wei_CC[i];
+  21   2          delay_ms(50);
+  22   2          DUAN=0x00;
+  23   2          }
+  24   1      }
+  25          
+  26          /*
+  27          void smg_count()//時鐘的秒分時算術邏輯这里要计算基时间
+  28          {
+  29              t0++;
+  30              
+  31              if(t0==200)
+  32              {
+  33               t0=0;
+  34               sec++;
+  35              }
+  36              if(sec>=60)
+  37              {
+  38               sec=0;
+  39               min++;
+  40              }
+  41              if(min>=60)
+  42              {
+  43               min=0;
+  44               hour++;
+  45              }
+  46              if(hour>=24)
+  47              {
+  48               hour=0;
+  49              }
+  50          }
+  51          */
+
+
+C51 COMPILER V9.54   SMG                                                                   12/26/2020 16:01:40 PAGE 2   
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     73    ----
+   CONSTANT SIZE    =     32    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     21       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

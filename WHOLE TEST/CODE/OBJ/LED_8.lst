@@ -1,0 +1,260 @@
+C51 COMPILER V9.54   LED_8                                                                 12/26/2020 16:27:03 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE LED_8
+OBJECT MODULE PLACED IN ..\OBJ\LED_8.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\HARDWARE\BSP- LED\LED_8.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\HARDWARE
+                    -\BSP- LED;..\SYSTEM\delay;..\HARDWARE\BSP-SMG;..\HARDWARE\BSP- KEY;..\HARDWARE\BSP-LCD) DEBUG OBJECTEXTEND PRINT(..\OBJ\
+                    -LED_8.lst) OBJECT(..\OBJ\LED_8.obj)
+
+line level    source
+
+   1          #include "led_8.h"
+   2          
+   3          void LED_Init()
+   4          {
+   5   1              delay_ms(100);
+*** WARNING C206 IN LINE 5 OF ..\HARDWARE\BSP- LED\LED_8.c: 'delay_ms': missing function-prototype
+*** ERROR C267 IN LINE 5 OF ..\HARDWARE\BSP- LED\LED_8.c: 'delay_ms': requires ANSI-style prototype
+   6   1          LED=0xff;
+*** ERROR C202 IN LINE 6 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+   7   1          delay_ms(100);
+   8   1              LED=0x00;
+*** ERROR C202 IN LINE 8 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+   9   1      }
+  10          
+  11          
+  12          /***********************************
+  13          
+  14          LED功能函數:1.全亮全灭2.顺序亮顺序灭3.倒序亮倒序灭4.一个一个亮灭(流水灯)5.单独一个亮灭(跑马灯)
+  15          
+  16          void  LED_All_ON();
+  17          void  LED_All_OFF();
+  18          void  LED_Left_One();
+  19          void  LED_Right_One();
+  20          void  LED_Left_Continue();
+  21          void  LED_Right_Continue();
+  22          
+  23          ***********************************/
+  24          
+  25          void oneled(uchar i)
+*** ERROR C141 IN LINE 25 OF ..\HARDWARE\BSP- LED\LED_8.c: syntax error near 'i', expected ')'
+  26           {
+  27   1                    uchar j;
+*** ERROR C141 IN LINE 27 OF ..\HARDWARE\BSP- LED\LED_8.c: syntax error near 'j'
+*** ERROR C202 IN LINE 27 OF ..\HARDWARE\BSP- LED\LED_8.c: 'j': undefined identifier
+  28   1               for(j=0;j<i;j++)
+*** ERROR C202 IN LINE 28 OF ..\HARDWARE\BSP- LED\LED_8.c: 'j': undefined identifier
+  29   1               {
+  30   2                LED=0xfe;          //第一个灯亮 1111.1110
+*** ERROR C202 IN LINE 30 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  31   2                delay_ms(100);
+  32   2                LED=0xfd;          //第二个灯亮
+*** ERROR C202 IN LINE 32 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  33   2                delay_ms(100);
+  34   2                LED=0xfb;          //第三个灯亮
+*** ERROR C202 IN LINE 34 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  35   2                delay_ms(100);
+  36   2                LED=0xf7;          //第四个灯亮
+*** ERROR C202 IN LINE 36 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  37   2                delay_ms(100);
+  38   2                LED=0xef;          //第五个灯亮
+*** ERROR C202 IN LINE 38 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  39   2                delay_ms(100);
+  40   2                LED=0xdf;          //第六个灯亮
+C51 COMPILER V9.54   LED_8                                                                 12/26/2020 16:27:03 PAGE 2   
+
+*** ERROR C202 IN LINE 40 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  41   2                delay_ms(100);
+  42   2                LED=0xbf;          //第七个灯亮
+*** ERROR C202 IN LINE 42 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  43   2                delay_ms(100);
+  44   2                LED=0x7f;          //第八个灯亮
+*** ERROR C202 IN LINE 44 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  45   2                delay_ms(100);
+  46   2                LED=0xff;
+*** ERROR C202 IN LINE 46 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  47   2                LED=0xfe;          //第一个灯亮
+*** ERROR C202 IN LINE 47 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  48   2                delay_ms(100);
+  49   2               }
+  50   1      }
+  51           
+  52          
+  53          void back_oneled(uchar i)
+*** ERROR C141 IN LINE 53 OF ..\HARDWARE\BSP- LED\LED_8.c: syntax error near 'i', expected ')'
+  54            {
+  55   1                     uchar j;
+*** ERROR C141 IN LINE 55 OF ..\HARDWARE\BSP- LED\LED_8.c: syntax error near 'j'
+*** ERROR C202 IN LINE 55 OF ..\HARDWARE\BSP- LED\LED_8.c: 'j': undefined identifier
+  56   1               for(j=0;j<i;j++)
+*** ERROR C202 IN LINE 56 OF ..\HARDWARE\BSP- LED\LED_8.c: 'j': undefined identifier
+  57   1               {
+  58   2                 LED=0x7f;          //第八个灯亮 0111.1111
+*** ERROR C202 IN LINE 58 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  59   2                 delay_ms(100);
+  60   2                 LED=0xbf;          //第七个灯亮
+*** ERROR C202 IN LINE 60 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  61   2                 delay_ms(100);
+  62   2                 LED=0xdf;          //第六个灯亮
+*** ERROR C202 IN LINE 62 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  63   2                 delay_ms(100);
+  64   2                 LED=0xef;          //第五个灯亮
+*** ERROR C202 IN LINE 64 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  65   2                 delay_ms(100);
+  66   2                 LED=0xf7;          //第四个灯亮
+*** ERROR C202 IN LINE 66 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  67   2                 delay_ms(100);
+  68   2                 LED=0xfb;          //第三个灯亮
+*** ERROR C202 IN LINE 68 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  69   2                 delay_ms(100);
+  70   2                 LED=0xfd;         //第二个灯亮
+*** ERROR C202 IN LINE 70 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  71   2                 delay_ms(100);
+  72   2                 LED=0xfe;         //第一个灯亮
+*** ERROR C202 IN LINE 72 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  73   2                 delay_ms(100);
+  74   2           }
+  75   1        }
+  76            
+  77            
+  78            void stopled(void)
+  79          {
+  80   1             LED=0xff;    //关闭8个LED
+*** ERROR C202 IN LINE 80 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  81   1                 delay_ms(100);
+  82   1      }
+  83          
+  84          
+C51 COMPILER V9.54   LED_8                                                                 12/26/2020 16:27:03 PAGE 3   
+
+  85          
+  86          void runninghorse(void)
+  87          { 
+  88   1        uint i;
+*** ERROR C202 IN LINE 88 OF ..\HARDWARE\BSP- LED\LED_8.c: 'uint': undefined identifier
+*** ERROR C141 IN LINE 88 OF ..\HARDWARE\BSP- LED\LED_8.c: syntax error near 'i'
+  89   1        uchar temp; 
+*** ERROR C202 IN LINE 89 OF ..\HARDWARE\BSP- LED\LED_8.c: 'uchar': undefined identifier
+*** ERROR C141 IN LINE 89 OF ..\HARDWARE\BSP- LED\LED_8.c: syntax error near 'temp'
+  90   1        {
+  91   2          temp=0x01;
+*** ERROR C202 IN LINE 91 OF ..\HARDWARE\BSP- LED\LED_8.c: 'temp': undefined identifier
+  92   2          for(i=0;i<8;i++)  //8个流水灯逐个闪动
+*** ERROR C202 IN LINE 92 OF ..\HARDWARE\BSP- LED\LED_8.c: 'i': undefined identifier
+  93   2          {
+  94   3          LED=~temp;          //0xfe
+*** ERROR C202 IN LINE 94 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  95   3          delay_ms(100);   //调用延时函数
+  96   3          temp<<=1;
+*** ERROR C202 IN LINE 96 OF ..\HARDWARE\BSP- LED\LED_8.c: 'temp': undefined identifier
+  97   3          }
+  98   2              if(LED == 0x00 )        
+*** ERROR C202 IN LINE 98 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+  99   2          { 
+ 100   3              LED = 0xfe; 
+*** ERROR C202 IN LINE 100 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+ 101   3                } // 0xfe = 1111 1110 
+ 102   2         }
+ 103   1       }
+ 104          
+ 105          
+ 106          void back_runninghorse()
+ 107          {
+ 108   1        uint i;
+*** ERROR C202 IN LINE 108 OF ..\HARDWARE\BSP- LED\LED_8.c: 'uint': undefined identifier
+*** ERROR C141 IN LINE 108 OF ..\HARDWARE\BSP- LED\LED_8.c: syntax error near 'i'
+ 109   1        uchar temp; 
+*** ERROR C202 IN LINE 109 OF ..\HARDWARE\BSP- LED\LED_8.c: 'uchar': undefined identifier
+*** ERROR C141 IN LINE 109 OF ..\HARDWARE\BSP- LED\LED_8.c: syntax error near 'temp'
+ 110   1         
+ 111   1         {
+ 112   2          temp=0x80;
+*** ERROR C202 IN LINE 112 OF ..\HARDWARE\BSP- LED\LED_8.c: 'temp': undefined identifier
+ 113   2          for(i=0;i<8;i++)  //8个流水灯反向逐个闪动
+*** ERROR C202 IN LINE 113 OF ..\HARDWARE\BSP- LED\LED_8.c: 'i': undefined identifier
+ 114   2         {
+ 115   3          LED=~temp;            //0x7f
+*** ERROR C202 IN LINE 115 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+ 116   3          delay_ms(100);   //调用延时函数
+ 117   3          temp>>=1;
+*** ERROR C202 IN LINE 117 OF ..\HARDWARE\BSP- LED\LED_8.c: 'temp': undefined identifier
+ 118   3         }
+ 119   2        if(LED == 0x00 )      
+*** ERROR C202 IN LINE 119 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+ 120   2        { 
+ 121   3        LED = 0x7f; 
+*** ERROR C202 IN LINE 121 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+ 122   3        } // 0xfe = 1111 1110 
+ 123   2        }
+ 124   1      }
+ 125          
+ 126          void flowingwater(void)
+C51 COMPILER V9.54   LED_8                                                                 12/26/2020 16:27:03 PAGE 4   
+
+ 127          {
+ 128   1              uint i;
+*** ERROR C202 IN LINE 128 OF ..\HARDWARE\BSP- LED\LED_8.c: 'uint': undefined identifier
+*** ERROR C141 IN LINE 128 OF ..\HARDWARE\BSP- LED\LED_8.c: syntax error near 'i'
+ 129   1          uchar temp; 
+*** ERROR C202 IN LINE 129 OF ..\HARDWARE\BSP- LED\LED_8.c: 'uchar': undefined identifier
+*** ERROR C141 IN LINE 129 OF ..\HARDWARE\BSP- LED\LED_8.c: syntax error near 'temp'
+ 130   1      
+ 131   1        
+ 132   1        {
+ 133   2        temp=0xfe;
+*** ERROR C202 IN LINE 133 OF ..\HARDWARE\BSP- LED\LED_8.c: 'temp': undefined identifier
+ 134   2         for(i=0;i<8;i++)  //8个流水灯依次全部点亮
+*** ERROR C202 IN LINE 134 OF ..\HARDWARE\BSP- LED\LED_8.c: 'i': undefined identifier
+ 135   2        {
+ 136   3         LED=temp;
+*** ERROR C202 IN LINE 136 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+ 137   3         delay_ms(100);   //调用延时函数
+ 138   3         temp=(temp|0x01)<<1;
+*** ERROR C202 IN LINE 138 OF ..\HARDWARE\BSP- LED\LED_8.c: 'temp': undefined identifier
+ 139   3        }
+ 140   2        if(LED == 0x00 )      
+*** ERROR C202 IN LINE 140 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+ 141   2        { 
+ 142   3        LED = 0xfe; 
+*** ERROR C202 IN LINE 142 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+ 143   3        } // 0xfe = 1111 1110 
+ 144   2        }
+ 145   1      }
+ 146          
+ 147          void back_flowingwater(void)
+ 148          {
+ 149   1        uint i;
+*** ERROR C202 IN LINE 149 OF ..\HARDWARE\BSP- LED\LED_8.c: 'uint': undefined identifier
+*** ERROR C141 IN LINE 149 OF ..\HARDWARE\BSP- LED\LED_8.c: syntax error near 'i'
+ 150   1        uchar temp; 
+*** ERROR C202 IN LINE 150 OF ..\HARDWARE\BSP- LED\LED_8.c: 'uchar': undefined identifier
+*** ERROR C141 IN LINE 150 OF ..\HARDWARE\BSP- LED\LED_8.c: syntax error near 'temp'
+ 151   1        
+ 152   1        {
+ 153   2         temp=0x7f;
+*** ERROR C202 IN LINE 153 OF ..\HARDWARE\BSP- LED\LED_8.c: 'temp': undefined identifier
+ 154   2         for(i=0;i<8;i++)  //8个流水灯依次反向全部点亮
+*** ERROR C202 IN LINE 154 OF ..\HARDWARE\BSP- LED\LED_8.c: 'i': undefined identifier
+ 155   2         {
+ 156   3          LED=temp;
+*** ERROR C202 IN LINE 156 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+ 157   3          delay_ms(100);   //调用延时函数
+ 158   3          temp=(temp|0x01)>>1;
+*** ERROR C202 IN LINE 158 OF ..\HARDWARE\BSP- LED\LED_8.c: 'temp': undefined identifier
+ 159   3         }
+ 160   2        }
+ 161   1        if(LED == 0x00 )      
+*** ERROR C202 IN LINE 161 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+ 162   1        { 
+ 163   2        LED = 0x7f; 
+*** ERROR C202 IN LINE 163 OF ..\HARDWARE\BSP- LED\LED_8.c: 'LED': undefined identifier
+ 164   2        } // 0xfe = 1111 1110 
+ 165   1      }
+ 166          
+ 167          
+ 168          
+C51 COMPILER V9.54   LED_8                                                                 12/26/2020 16:27:03 PAGE 5   
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  70 ERROR(S)

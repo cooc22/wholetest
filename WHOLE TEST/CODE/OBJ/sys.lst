@@ -1,0 +1,62 @@
+C51 COMPILER V9.54   SYS                                                                   12/25/2020 17:22:05 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE SYS
+OBJECT MODULE PLACED IN ..\OBJ\sys.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\SYSTEM\sys\sys.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(..
+                    -\OBJ\sys.lst) OBJECT(..\OBJ\sys.obj)
+
+line level    source
+
+   1          #include "sys.h"
+*** WARNING C318 IN LINE 3 OF ..\SYSTEM\sys\sys.h: can't open file 'stm32f10x.h'
+*** ERROR C141 IN LINE 71 OF ..\SYSTEM\sys\sys.h: syntax error near 'addr', expected ')'
+   2          
+   3          //////////////////////////////////////////////////////////////////////////////////       
+   4          //本程序只供学习使用，未经作者许可，不得用于其它任何用途
+   5          //ALIENTEK Mini STM32开发板
+   6          //系统中断分组设置化               
+   7          //正点原子@ALIENTEK
+   8          //技术论坛:www.openedv.com
+   9          //修改日期:2012/9/10
+  10          //版本：V1.4
+  11          //版权所有，盗版必究。
+  12          //Copyright(C) 正点原子 2009-2019
+  13          //All rights reserved
+  14          //********************************************************************************  
+  15          //THUMB指令不支持汇编内联
+  16          //采用如下方法实现执行汇编指令WFI  
+  17          void WFI_SET(void)
+  18          {
+  19   1              __ASM volatile("wfi");            
+*** ERROR C202 IN LINE 19 OF ..\SYSTEM\sys\sys.c: '__ASM': undefined identifier
+*** ERROR C141 IN LINE 19 OF ..\SYSTEM\sys\sys.c: syntax error near 'volatile'
+  20   1      }
+  21          //关闭所有中断
+  22          void INTX_DISABLE(void)
+  23          {                 
+  24   1              __ASM volatile("cpsid i");
+*** ERROR C202 IN LINE 24 OF ..\SYSTEM\sys\sys.c: '__ASM': undefined identifier
+*** ERROR C141 IN LINE 24 OF ..\SYSTEM\sys\sys.c: syntax error near 'volatile'
+  25   1      }
+  26          //开启所有中断
+  27          void INTX_ENABLE(void)
+  28          {
+  29   1              __ASM volatile("cpsie i");                
+*** ERROR C202 IN LINE 29 OF ..\SYSTEM\sys\sys.c: '__ASM': undefined identifier
+*** ERROR C141 IN LINE 29 OF ..\SYSTEM\sys\sys.c: syntax error near 'volatile'
+  30   1      }
+  31          //设置栈顶地址
+  32          //addr:栈顶地址
+  33          __asm void MSR_MSP(u32 addr) 
+*** ERROR C141 IN LINE 33 OF ..\SYSTEM\sys\sys.c: syntax error near '__asm'
+*** ERROR C141 IN LINE 33 OF ..\SYSTEM\sys\sys.c: syntax error near 'addr', expected ')'
+  34          {
+  35   1          MSR MSP, r0                         //set Main Stack value
+*** ERROR C202 IN LINE 35 OF ..\SYSTEM\sys\sys.c: 'MSR': undefined identifier
+*** ERROR C141 IN LINE 35 OF ..\SYSTEM\sys\sys.c: syntax error near 'MSP'
+  36   1          BX r14
+*** ERROR C141 IN LINE 36 OF ..\SYSTEM\sys\sys.c: syntax error near 'BX'
+  37   1      }
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  12 ERROR(S)

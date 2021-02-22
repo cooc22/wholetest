@@ -1,0 +1,8 @@
+"..\OBJ\STARTUP.obj",
+"..\OBJ\LED_8.obj",
+"..\OBJ\SMG.obj",
+"..\OBJ\KEY.obj",
+"..\OBJ\delay.obj",
+"..\OBJ\test.obj" 
+TO "..\OBJ\TEST" 
+PRINT("..\OBJ\TEST.m51") RAMSIZE(256) 

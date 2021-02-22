@@ -1,0 +1,86 @@
+C51 COMPILER V9.54   LCD1602                                                               12/26/2020 16:32:12 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE LCD1602
+OBJECT MODULE PLACED IN ..\OBJ\LCD1602.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\HARDWARE\BSP-LCD\LCD1602.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\HARDWAR
+                    -E\BSP- LED;..\SYSTEM\delay;..\HARDWARE\BSP-SMG;..\HARDWARE\BSP- KEY;..\HARDWARE\BSP-LCD) DEBUG OBJECTEXTEND PRINT(..\OBJ
+                    -\LCD1602.lst) OBJECT(..\OBJ\LCD1602.obj)
+
+line level    source
+
+   1          #include "lcd1602.h"
+   2          
+   3          void rd_bf()
+   4          {
+   5   1        unsigned char sta;
+   6   1          dataport=0xff;
+   7   1          RS=0;
+   8   1          RW=1;
+   9   1          do{
+  10   2            E=1;
+  11   2            sta=dataport;
+  12   2            E=0;
+  13   2          }while(sta&0x80);
+  14   1      }
+  15          
+  16          void Lcd1602WriteData(unsigned char dat)
+  17          {
+  18   1       rd_bf();
+  19   1       RS=1;
+  20   1       RW=0;
+  21   1       E=1;
+  22   1       dataport=dat;
+  23   1       E=0;
+  24   1      }
+  25          
+  26          void Lcd1602WriteDictate(unsigned char dictate)
+  27          {
+  28   1       rd_bf();
+  29   1       RS=0;
+  30   1       RW=0;
+  31   1       E=1;
+  32   1       dataport=dictate;
+  33   1       E=0;
+  34   1      }
+  35          
+  36          void Lcd1602Display(unsigned char address,unsigned char _data)
+  37          {
+  38   1        Lcd1602WriteDictate(address);
+  39   1        Lcd1602WriteData(_data);
+  40   1      }
+  41          
+  42          
+  43          void Lcd1602ClearScreen(void)
+  44          {
+  45   1       Lcd1602WriteData(0x01);
+  46   1       delay_us(50);
+  47   1      }
+  48          
+  49          
+  50          void Lcd1602_Init(void)
+  51          {
+  52   1       Lcd1602ClearScreen();
+  53   1       Lcd1602WriteDictate(0x38);//显示模式设置， 设置 16x2 显示， 5x7 点阵，8位接口
+C51 COMPILER V9.54   LCD1602                                                               12/26/2020 16:32:12 PAGE 2   
+
+  54   1       Lcd1602WriteDictate(0x01);//开显示
+  55   1       Lcd1602WriteDictate(0x40); //起始显示地址
+  56   1       Lcd1602ClearScreen();
+  57   1      }
+  58          
+  59          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     91    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     41    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

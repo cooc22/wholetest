@@ -1,0 +1,116 @@
+C51 COMPILER V9.54   LCD12864                                                              12/26/2020 16:51:53 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE LCD12864
+OBJECT MODULE PLACED IN ..\OBJ\LCD12864.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\HARDWARE\BSP-LCD\LCD12864.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\HARDWA
+                    -RE\BSP- LED;..\SYSTEM\delay;..\HARDWARE\BSP-SMG;..\HARDWARE\BSP- KEY;..\HARDWARE\BSP-LCD) DEBUG OBJECTEXTEND PRINT(..\OB
+                    -J\LCD12864.lst) OBJECT(..\OBJ\LCD12864.obj)
+
+line level    source
+
+   1          #include "lcd12864.h"
+   2          
+   3          
+   4          void Lcd12864_Busy()
+   5           {
+   6   1        uchar busy;
+   7   1        EN=Low;
+   8   1        RS=Low;
+   9   1        RW=High;
+  10   1        while(1)
+  11   1        {
+  12   2          EN=High;
+  13   2          _nop;
+  14   2            _nop;
+  15   2          busy=P0;
+  16   2            _nop;
+  17   2          EN=Low;
+  18   2          if((busy&0x90)==0)
+  19   2          break;
+  20   2        };
+  21   1       }
+  22          
+  23          void Lcd12864WriteCommand(uchar command)
+  24           {
+  25   1        Lcd12864_Busy();
+  26   1        RS=Low;
+  27   1        _nop;
+  28   1        RW=Low;
+  29   1        _nop;
+  30   1        EN=High;
+  31   1        _nop;
+  32   1        P0=command;
+  33   1        _nop;
+  34   1        EN=Low;  
+  35   1        _nop;
+  36   1       }
+  37           
+  38          
+  39          void Lcd12864WriteData(uchar ucdata)
+  40            {
+  41   1         Lcd12864_Busy();  
+  42   1         RS=High;
+  43   1         _nop;
+  44   1         RW=Low;
+  45   1         _nop;
+  46   1         EN=High;
+  47   1         _nop;
+  48   1         P0=ucdata;
+  49   1         _nop;
+  50   1         EN=Low;
+  51   1         _nop;
+  52   1        }
+  53            
+C51 COMPILER V9.54   LCD12864                                                              12/26/2020 16:51:53 PAGE 2   
+
+  54          
+  55          
+  56          void Lcd12864Display(unsigned char page,unsigned char col,unsigned char code *hzk)
+  57          {
+  58   1       unsigned char j=0,i=0;
+  59   1       for(j=0;j<2;j++)
+  60   1        {
+  61   2         Lcd12864WriteCommand(0xb8+page+j);
+  62   2         Lcd12864WriteCommand(0x40+col);
+  63   2         for(i=0;i<16;i++)
+  64   2         Lcd12864WriteData(hzk[16*j+i]);
+  65   2        }
+  66   1      }
+  67          
+  68          void Lcd12864_ClearScreen(void)
+  69          {
+  70   1       Lcd12864WriteCommand(0x01);
+  71   1       delay_us(20);
+  72   1      }
+  73          
+  74          
+  75          void Lcd12864_Init(void)
+  76          {
+  77   1      Lcd12864WriteCommand(0x30);//功能设置，一次送 8 位数据，基本指令集
+  78   1      Lcd12864WriteCommand(0x0C);//整体显示，游标 off，游标位置 off
+  79   1      Lcd12864WriteCommand(0x01);//清 DDRAM
+  80   1      Lcd12864WriteCommand(0x02);//DDRAM 地址归位
+  81   1      Lcd12864WriteCommand(0x80);//设定 DDRAM 7 位地址 000，0000 到地址计数器 AC
+  82   1      //Lcd12864ClearScreen();
+  83   1      }
+  84          
+  85          void PortInit(void)
+  86          {
+  87   1       P0=P1=P2=P3=0xFF;
+  88   1      }
+  89          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    169    ----
+   CONSTANT SIZE    =    256    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

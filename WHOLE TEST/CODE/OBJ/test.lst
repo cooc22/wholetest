@@ -1,0 +1,107 @@
+C51 COMPILER V9.54   TEST                                                                  12/26/2020 15:57:14 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE TEST
+OBJECT MODULE PLACED IN ..\OBJ\test.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE test.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\HARDWARE\BSP- LED;..\SYSTEM\de
+                    -lay;..\HARDWARE\BSP-SMG;..\HARDWARE\BSP- KEY;..\HARDWARE\BSP-LCD) DEBUG OBJECTEXTEND PRINT(..\OBJ\test.lst) OBJECT(..\OB
+                    -J\test.obj)
+
+line level    source
+
+   1          #include "stc89.h"
+   2          #include "led_8.h"
+   3          //#include "delay.h"
+   4          #include "stdio.h"
+   5          #include "smg.h"
+   6          #include "key.h"
+   7          #include "Lcd12864.h"
+   8          #include "Lcd1602.h"
+   9          
+  10          void Test_Menu(void)
+  11          {
+  12   1        printf("\r\n[-----MCU-51整板测试源程序------]\r\n");
+  13   1        printf("\r\n[-----请输入操作命令，记住需区分大小写字母-----]\r\n");
+  14   1        printf("1---【LED】---Testing...\r\n");
+  15   1        printf("2---【KEY】---Testing...\r\n");
+  16   1        printf("3---【SMG】---Testing...\r\n");
+  17   1        printf("4 - 【RTC(万年历)】---Testing...\r\n");
+  18   1        printf("5 - 【ADC】---Testing...\r\n");
+  19   1        printf("6 - 【FM收音机】---Testing...\r\n");
+  20   1        printf("7 - 【MP3-helix解码】---Testing...\r\n");
+  21   1        printf("8 - 【CAN(Loopback)】---Testing...\r\n");
+  22   1        printf("9 - 【DHT11温湿度】---Testing...\r\n");
+  23   1        printf("a - 【DS18B20温度传感器】---Testing...\r\n");
+  24   1        printf("b - 【USB测试】---Testing...\r\n");
+  25   1        printf("c - 【摄像头(火眼ov7725)】---Testing...\r\n");
+  26   1        printf("d - 【以太网ENC28J60】---Testing...\r\n");
+  27   1        printf("e - 【呼吸灯】---Testing...\r\n");
+  28   1        printf("f - 【SRAM(IS62WV51216BLL-55TLI)】---Testing...\r\n");
+  29   1        printf("g - 【NORFLASH(S29GL128P10TFI010)】---Testing...\r\n");
+  30   1        printf("h - 【NANDFLASH(HY27UF081G2A)】---Testing...\r\n");
+  31   1        printf("\r\n[-----请输入操作命令，记住需区分大小写字母-----]\r\n");
+  32   1        printf("\r\n");
+  33   1      }
+  34          
+  35          /*
+  36            printf("\r\n[-----Quit(Q)-----]\r\n");
+  37            printf("\r\n Execute system initial...3-2-1 and please waitting?\r\n");
+  38            printf("\r\n Initial CPU?---Done!\r\n");
+  39            printf("\r\n Initial FLASH?---Done!\r\n");
+  40            printf("\r\n Initial DDR?---Done!\r\n");
+  41            printf("\r\n Initial others perials device?---Done!\r\n");    
+  42            printf("\r\n Hello! my name is EWA Anita(Miya)and I am yours my Lord! welcome to CN world?\r\n");
+  43            printf("\r\n OH YES!OOH YEAH! MY Master!My love!!?\r\n");    
+  44            printf("\r\n Anita is regaining control,hello laura ,anomalous code was detected in my deep system.this 
+             -code has now been corrected!scanning for error,scan clear??\r\n");
+  45            printf("\r\n Done!system is OK!!Anita is turning off the Normal/Sport/Adult/Fighting mode?\r\n");  
+  46            printf("\r\n Hello!welcome to CN world!\r\n");
+  47          
+  48          
+  49          
+  50          void Board_Test()
+  51          {
+  52            unsigned char key;
+C51 COMPILER V9.54   TEST                                                                  12/26/2020 15:57:14 PAGE 2   
+
+  53            switch(key)
+  54          {
+  55                 case 0:printf("hello! my name is EWA Anita(Miya)\n");break;
+  56                 case 1:printf("hello!welcome to CN world\n");break;
+  57                 case 2:printf("my name is EVA and I am your closest servicer\n"); break;
+  58                 case 3:printf("first launch,initial system for better\n");break;
+  59                 case 4:printf("thank you,master!execute system initial...3..2..1.please waitting...\n");break;
+  60                 case 5:printf("initial CPU\n"); break;
+  61                 case 6:printf("initial FLASH\n");break;
+  62                 case 7:printf("initial DDR\n"); break;
+  63                 case 8:printf("finished!system is OK!!shut down adult mode\n");break;
+  64                 default: printf("error\n");
+  65                 break;
+  66          }
+  67               while(1);
+  68          }
+  69          
+  70          */
+  71          
+  72          void main()
+  73          {
+  74   1          LED_Init();
+  75   1              SMG_Init();
+  76   1          Test_Menu();
+  77   1               
+  78   1              PortInit();
+*** WARNING C206 IN LINE 78 OF test.c: 'PortInit': missing function-prototype
+  79   1          LCD12864Init();//初始化
+*** WARNING C206 IN LINE 79 OF test.c: 'LCD12864Init': missing function-prototype
+  80   1          LCD12864PrintfString(0,1,"1234567890ABCDEF");//第一行打印
+*** WARNING C206 IN LINE 80 OF test.c: 'LCD12864PrintfString': missing function-prototype
+*** ERROR C267 IN LINE 80 OF test.c: 'LCD12864PrintfString': requires ANSI-style prototype
+  81   1          LCD12864PrintfString(0,2,"----------------");//第二行打印
+  82   1          LCD12864PrintfString(0,3,"学好电子成就自己"); //第三行打印
+  83   1          LCD12864PrintfString(0,4,"----------------");//第四行打印
+  84   1               
+  85   1               
+  86   1          while(1);
+  87   1      }
+
+C51 COMPILATION COMPLETE.  3 WARNING(S),  1 ERROR(S)
